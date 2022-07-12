@@ -1,0 +1,37 @@
+video 1
+php artisan migrate
+composer require laravel/ui
+php artisan ui vue --auth --para activarlo
+npm install && npm run dev
+
+video 2
+php artisan make:model Permission/Models/Role -m
+php artisan make:migration create_role_user_table
+
+video 3
+php artisan make:model Permission/Models/Permission -m
+php artisan make:migration create_permission_role_table
+
+video 4
+php artisan make:seeder PermissionInfoSeeder
+composer dump-autoload
+php artisan migrate:fresh
+php artisan migrate:refresh --seed
+php artisan db:seed
+
+video 5
+php artisan make:controller RoleController
+php artisan make:controller PositionController --resource
+php artisan route:list
+
+vidoe 7
+php artisan migrate:fresh --seed
+php artisan migrate:fresh --seed
+
+video 13
+php artisan make:policy UserPolicy --model=User
+php artisan tinken
+
+
+https://www.youtube.com/c/JHONATANDAVIDFERNANDEZROSA/videos
+https://www.youtube.com/watch?v=bFJDOIYh4ic&t=1s
