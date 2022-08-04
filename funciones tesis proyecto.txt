@@ -1,0 +1,107 @@
+CREATE OR REPLACE VIEW public.fc_dist_sust
+AS SELECT p.id AS period_id,
+    p.nombre,
+    p.descripcion,
+    p.codigo,
+        CASE
+            WHEN d.tot IS NULL THEN 0::bigint
+            ELSE d.tot
+        END AS total_sustentantes
+   FROM periods p
+     LEFT JOIN ( SELECT count(distributives.period_id) AS tot,
+            distributives.period_id
+           FROM distributives
+          GROUP BY distributives.period_id) d ON p.id = d.period_id;
+
+
+CREATE OR REPLACE VIEW public.fc_period_reglas
+AS SELECT p.id AS period_id,
+    p.nombre,
+    p.descripcion,
+    p.codigo,
+        CASE
+            WHEN d.tot IS NULL THEN 'Sin Reglas'::text
+            ELSE 'Reglas asignadas'::text
+        END AS reglas_asignacion
+   FROM periods p
+     LEFT JOIN ( SELECT count(rules.period_id) AS tot,
+            rules.period_id
+           FROM rules
+          GROUP BY rules.period_id) d ON p.id = d.period_id;
+
+
+CREATE OR REPLACE FUNCTION public.sp_asignar_formas(v_periodo integer)
+ RETURNS text
+ LANGUAGE plpgsql
+AS $function$
+DECLARE 
+ v_asig integer;
+ v_asig_con integer;
+ 
+ tables CURSOR FOR
+       
+  select * from public.distributives 
+		where period_id = v_periodo 
+		--and fecha_programada_inicio in ('18-01-2019 23:30:00.000', '17-01-2019 08:00:00.000')
+		--and forma != 'DEMO'
+		order by formas_asignadas, fecha_programada_inicio asc;
+BEGIN
+	
+UPDaTE distributives SET formas_asignadas_con = 0 where period_id = v_periodo;
+UPDaTE distributives SET formas_asignadas = 0 where period_id = v_periodo;
+UPDaTE distributives SET forma = null where period_id = v_periodo;
+UPDaTE distributives SET sesion = null where period_id = v_periodo;	
+	
+UPDATE public.distributives
+	SET formas_asignadas = tt.formas_asignadas
+	from (select count(asignatura) as formas_asignadas, asignatura, fecha, sesion
+		from rules 
+		where period_id = v_periodo
+		  and forma != 'DEMO'
+		group by asignatura, fecha, sesion) tt
+	where 	public.distributives.period_id = v_periodo
+	and public.distributives.fecha_programada_inicio = tt.fecha
+	and public.distributives.asignatura::integer = tt.asignatura;
+	
+      FOR table_record IN tables LOOP
+	v_asig = 1;
+
+	
+	if exists(select * from public.distributives  where table_record.cedula = cedula and period_id = v_periodo)
+	then	
+		v_asig_con = v_asig_con + v_asig;
+		if exists(select * from public.distributives  where table_record.cedula = cedula 
+				  and formas_asignadas >= v_asig_con and period_id = v_periodo)
+		then
+			update public.distributives set formas_asignadas_con = v_asig_con where cedula = table_record.cedula and period_id = v_periodo;--aumentar periodo
+			
+		else
+			v_asig_con = 1;
+			update public.distributives set formas_asignadas_con = v_asig_con where cedula = table_record.cedula and period_id = v_periodo; --aumentar periodo
+		end if;
+	end if;	
+     END LOOP;
+
+    UPDATE public.distributives
+	SET forma = tt.forma, sesion = tt.sesion
+	from (select *, row_number() OVER (
+		PARTITION BY FECHA, asignatura
+		ORDER BY FECHA, asignatura) as orden from rules
+		where period_id = v_periodo
+		--and fecha in ('18-01-2019 23:30:00.000', '17-01-2019 08:00:00.000')
+		) tt
+	where public.distributives.asignatura = tt.asignatura
+	and public.distributives.fecha_programada_inicio = tt.fecha
+	and public.distributives.period_id = v_periodo
+	and public.distributives.formas_asignadas_con = tt.orden;
+	
+RETURN 'OK';
+END;
+$function$
+;
+
+
+indices
+cedula
+period_id
+de la tabla public.distributives

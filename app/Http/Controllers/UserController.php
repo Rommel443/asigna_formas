@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Gate;
 
 
 
@@ -33,7 +34,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //Gate::authorize('haveaccess', 'role.create');
+        Gate::authorize('haveaccess', 'user.create');
+        //$this->authorize('haveaccess', 'user.create');
         $users = User::get();
 
         return view('user.create', compact('users'));
@@ -47,6 +49,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('haveaccess', 'user.create');
         //dd($request);
         $user = new User();
         $user->name = $request['name'];
@@ -98,6 +101,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $this->authorize('update', [$user, ['user.edit','userown.edit']]);
         $request->validate([
             'name'          => 'required|max:50|unique:users,name,'.$user->id,
             'email'          => 'required|max:50|unique:users,email,'.$user->id,

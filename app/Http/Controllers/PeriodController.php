@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Period;
+use Illuminate\Support\Facades\Gate;
 
 class PeriodController extends Controller
 {
@@ -14,7 +15,8 @@ class PeriodController extends Controller
      */
     public function index()
     {
-        //$this->authorize('haveaccess', 'user.index');
+        
+        Gate::authorize('haveaccess', 'period.index');
         $periods = Period::orderBy('id','Desc')->paginate(5);
         //return $users; 
         return view ('period.index', compact('periods'));
@@ -27,7 +29,7 @@ class PeriodController extends Controller
      */
     public function create()
     {
-        //Gate::authorize('haveaccess', 'role.create');
+        Gate::authorize('haveaccess', 'period.create');
         $periods = Period::get();
         //dd($periods);
         return view('period.create', compact('periods'));
@@ -41,7 +43,7 @@ class PeriodController extends Controller
      */
     public function store(Request $request)
     {
-        //Gate::authorize('haveaccess', 'role.create');
+        Gate::authorize('haveaccess', 'period.create');
         $request->validate([
             'nombre'          => 'required|max:50|unique:periods,nombre',
             'descripcion'          => 'required|max:50|unique:periods,descripcion'
@@ -64,11 +66,13 @@ class PeriodController extends Controller
      */
     public function show(Period $period)
     {
+        $this->authorize('haveaccess', 'period.show');
         //dd($period->id);
         //$this->authorize('view', [$user, ['user.show','userown.show']]);
         //$period = Period::orderBy('nombre')->get();
         //return $roles;
         //dd($period);
+        //$roles = Role::orderBy('name')->get();
         return view('period.view', compact('period'));
     }
 
@@ -80,7 +84,7 @@ class PeriodController extends Controller
      */
     public function edit(Period $period)
     {
-        //$this->authorize('update', [$user, ['user.edit','userown.edit']]);
+        $this->authorize('haveaccess', 'period.edit');
         
 
         //$period = Period::orderBy('nombre')->get();
@@ -97,6 +101,7 @@ class PeriodController extends Controller
      */
     public function update(Request $request, Period $period)
     {
+        $this->authorize('haveaccess', 'period.edit');
         $request->validate([
             'nombre'          => 'required|max:50|unique:periods,nombre,'.$period->id,
             'descripcion'          => 'required|max:50|unique:periods,descripcion,'.$period->id,
@@ -118,6 +123,6 @@ class PeriodController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

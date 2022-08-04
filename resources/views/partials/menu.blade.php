@@ -7,23 +7,33 @@
                             <span>Home</span>
                         </a>
                     </li>
-                    @can('view',[ Auth::user() , ['user.show','userown.show']]) 
-                    <li>
+
+                    @can('haveaccess','user.index')  
+                    <li
+                        @if( request()->path() === 'user' )
+                            class="active"
+                        @endif
+                    >
                         <a class="menu-toggle">
                             <i class="material-icons">accessibility</i>
                             <span>Usuarios</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
-                                <a href="{{ route('user.index') }}">Listado de usuarios</a>
+                            <li
+                            @if( request()->path() === 'user' )
+                                    class="active"
+                                @endif
+                            >
+                                <a href="{{ route('user.index') }}">Listado de Usuarios </a>
                             </li>
+                            @can('haveaccess','user.create')
                             <li>
                                 <a href="{{ route('user.create') }}">Crear nuevo Usuario</a>
                             </li>
-                            
+                            @endcan 
                         </ul>
                     </li>
-                    @endcan 
+                    @endcan  
 
                     @can('haveaccess','role.index')  
                     <li
@@ -52,23 +62,35 @@
                     </li>
                     @endcan  
 
-                                        
-                    <li>
+                    @can('haveaccess','period.index')  
+                    <li
+                        @if( request()->path() === 'period' )
+                            class="active"
+                        @endif
+                    >
                         <a class="menu-toggle">
                             <i class="material-icons">check_circle</i>
                             <span>Periodos</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
+                            <li
+                            @if( request()->path() === 'period' )
+                                    class="active"
+                                @endif
+                            >
                                 <a href="{{ route('period.index') }}">Listado de Periodos </a>
                             </li>
-                            
+                            @can('haveaccess','period.create')
                             <li>
                                 <a href="{{ route('period.create') }}">Crear nuevo Periodo</a>
                             </li>
-                            
+                            @endcan 
                         </ul>
                     </li>
+                    @endcan  
+
+                                        
+                    
 
                     <li>
                         <a href="{{ route('distributive.index') }}">
@@ -76,12 +98,13 @@
                             <span>Distributivos</span>
                         </a>
                     </li>
-
+                    @can('haveaccess','rule.index')
                     <li>
                         <a href="{{ route('rule.index') }}">
                             <i class="material-icons">stars</i>
                             <span>Reglas de asignación</span>
                         </a>
                     </li>
+                    @endcan  
                 </ul>
             </div>

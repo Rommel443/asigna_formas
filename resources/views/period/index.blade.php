@@ -77,16 +77,16 @@
 
                                     <div class="btn-group">
 
-                                    {{--@can('view',[$user, ['user.show','userown.show']])--}}
+                                    @can('view',[$period, ['period.show','periodd.show']])
                                         <a href="{{ route('period.show',[$period->id]) }}" class="btn btn-xs bg-brown" title="Ver"><b><i class="material-icons">folder_shared</i></b></a>
-                                        {{--@endcan--}}
+                                        @endcan
 
-                                        {{--@can('view',[$user, ['user.edit','userown.edit']])--}}
+                                        @can('view',[$period, ['period.edit','periodd.edit']])
                                         <a href="{{ route('period.edit',[$period->id]) }}" class="btn btn-xs bg-teal" title="Editar"><b><i class="material-icons">create</i></b></a>
-                                        {{--@endcan --}}
+                                        @endcan
 
                                     
-                                        {{--@can('haveaccess','user.destroy') --}}
+                                        @can('haveaccess','period.destroy') 
                                         {!! Form::open(array(
                                             'style' => 'display: inline-block;',
                                             'method' => 'DELETE',
@@ -94,7 +94,7 @@
                                             'route' => ['period.destroy', $period->id])) !!}
                                             {!! Form::button('<i class="material-icons">delete</i>', ['class' => 'btn btn-xs btn-danger', 'type'=>'submit']) !!}
                                         {!! Form::close() !!} 
-                                        {{--@endcan --}}
+                                        @endcan
 
                                 
 

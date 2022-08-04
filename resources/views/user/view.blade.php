@@ -98,10 +98,11 @@
 
 
                             <hr>
-                                            
+                                        
                                             <a href="{{ route('user.index') }}" class="btn btn-success">Regresar</a>
+                                        @can('view',[$user, ['user.edit','userown.edit']])
                                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary">Editar</a>
-	
+                                        @endcan 
                             
              </div>
         </div>

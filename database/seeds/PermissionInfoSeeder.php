@@ -186,72 +186,6 @@ class PermissionInfoSeeder extends Seeder
 
         $permission_all[] = $permission->id;
 
-        //new
-        $permission = Permission::create([
-            'name' => 'Show own positionown',
-            'slug' => 'positionown.show',
-            'descripcion' => 'A user can edit a own position',
-        ]);
-
-        $permission_all[] = $permission->id;
-
-       
-
-        $permission = Permission::create([
-            'name' => 'Edit own positionown',
-            'slug' => 'positionown.edit',
-            'descripcion' => 'A user can edit a own position',
-        ]);
-
-        $permission_all[] = $permission->id;
-
-        
-        //posiciones permisos
-
-        $permission = Permission::create([
-            'name' => 'List Position',
-            'slug' => 'position.index',
-            'descripcion' => 'A user can list a position',
-        ]);
-
-        $permission_all[] = $permission->id;
-
-        
-        $permission = Permission::create([
-            'name' => 'Show Position',
-            'slug' => 'position.show',
-            'descripcion' => 'A user can view a position',
-        ]);
-
-        $permission_all[] = $permission->id;
-
-        
-        $permission = Permission::create([
-            'name' => 'Edit Position',
-            'slug' => 'position.edit',
-            'descripcion' => 'A user can edit a position',
-        ]);
-
-        $permission_all[] = $permission->id;
-
-        
-
-        $permission = Permission::create([
-            'name' => 'Create Position',
-            'slug' => 'position.create',
-            'descripcion' => 'A user can create a position',
-        ]);
-
-        $permission_all[] = $permission->id;
-
-        $permission = Permission::create([
-            'name' => 'Destroy Position',
-            'slug' => 'position.destroy',
-            'descripcion' => 'A user can destroy a position',
-        ]);
-
-        $permission_all[] = $permission->id;
-
         /// permiso usuarios
         $roledit->permissions()->sync(1);
 
@@ -264,6 +198,65 @@ class PermissionInfoSeeder extends Seeder
             'fecha_fin_evaluacion' => '2022-06-01 13:01:01',
             
         ]);
+
+
+        //permission periodos
+        $permission = Permission::create([
+            'name' => 'Listar Periodos',
+            'slug' => 'period.index',
+            'descripcion' => 'El usuario podrá listar periodos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Visualizar Periodo',
+            'slug' => 'period.show',
+            'descripcion' => 'El usuario podrá visualizar periodos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Crear Periodo',
+            'slug' => 'period.create',
+            'descripcion' => 'El usuario podrá crear periodos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Editar Periodo',
+            'slug' => 'period.edit',
+            'descripcion' => 'El usuario podrá editar Periodos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Eliminar Periodo',
+            'slug' => 'period.destroy',
+            'descripcion' => 'El usuario podrá eliminar periodos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        //permission reglas
+        $permission = Permission::create([
+            'name' => 'Listar Reglas',
+            'slug' => 'rule.index',
+            'descripcion' => 'El usuario podrá listar reglas de asignación',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Visualizar Reglas',
+            'slug' => 'rule.show',
+            'descripcion' => 'El usuario podrá visualizar reglas de asignación',
+        ]);
+
+        $permission_all[] = $permission->id;
 
     }
 }

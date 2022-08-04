@@ -146,8 +146,9 @@
                             <hr>
                                             
                                             <a href="{{ route('period.index') }}" class="btn btn-success">Regresar</a>
+                                            @can('view',[$period, ['period.edit','periodd.edit']])
                                             <a href="{{ route('period.edit', $period->id) }}" class="btn btn-primary">Editar</a>
-	
+                                            @endcan 
                             
              </div>
         </div>

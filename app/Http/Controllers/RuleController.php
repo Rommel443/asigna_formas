@@ -8,6 +8,7 @@ use App\Rule;
 use Illuminate\Support\Facades\DB;
 use App\Imports\RulesImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Gate;
 
 class RuleController extends Controller
 {
@@ -18,7 +19,7 @@ class RuleController extends Controller
      */
     public function index()
     {
-        //Gate::authorize('haveaccess', 'role.index');
+        Gate::authorize('haveaccess', 'rule.index');
         //$distributives = Distributive::orderBy('id','Desc')->paginate(5);
         //$sql = "select * from fc_dist_sust";
 

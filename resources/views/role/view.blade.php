@@ -158,8 +158,10 @@
                             <hr>
                             
                             <a href="{{ route('role.index') }}" class="btn btn-success">Regresar</a>
-                            <a href="{{ route('role.edit', $role->id) }}" class="btn btn-primary">Editar</a>
 
+                            
+                            <a href="{{ route('role.edit', $role->id) }}" class="btn btn-primary">Editar</a>
+                            
                             
                             
                 </fomr>             

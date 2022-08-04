@@ -37,7 +37,16 @@ class UserPolicy
      */
     public function create(User $usera)
     {
-        return $usera->id > 0;
+        if ($usera->havePermission($perm[0])){
+            return true;
+        }else
+            if ($usera->havePermission($perm[1])){
+                return $usera->id === $user->id;
+        }    
+        else{
+            return false;
+        }
+        //return $usera->id > 0;
     }
 
     /**
