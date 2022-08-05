@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Period;
+use App\Distributive;
 use App\Rule;
 use Illuminate\Support\Facades\DB;
 use App\Imports\RulesImport;
@@ -65,6 +66,8 @@ class RuleController extends Controller
      */
     public function show(Period $rule)
     {
+        //dd($rule);
+        $this->authorize('haveaccess', 'rule.show');
         $rule = Rule::where('period_id','=',$rule->id)->paginate(20);
         
         //dd($rule);
@@ -100,8 +103,14 @@ class RuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Period $rule)
     {
-        //
+        //dd($rule);
+
+        $delete_reg = DB::select('delete from rules where period_id = ?', [$rule->id]);
+
+        return redirect()->route('rule.index')->with('status_success','Reglas eliminadas con éxito');
+
+
     }
 }

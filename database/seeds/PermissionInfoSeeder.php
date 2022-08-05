@@ -258,5 +258,31 @@ class PermissionInfoSeeder extends Seeder
 
         $permission_all[] = $permission->id;
 
+        $permission = Permission::create([
+            'name' => 'Eliminar Reglas',
+            'slug' => 'rule.destroy',
+            'descripcion' => 'El usuario podrá eliminar reglas de asignación',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        //permission distributivos
+        $permission = Permission::create([
+            'name' => 'Listar Distributivos',
+            'slug' => 'distributive.index',
+            'descripcion' => 'El usuario podrá listar distributivos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Visualizar Distributivos',
+            'slug' => 'distributive.show',
+            'descripcion' => 'El usuario podrá visualizar distributivos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+
     }
 }

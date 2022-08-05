@@ -1,17 +1,26 @@
 CREATE OR REPLACE VIEW public.fc_dist_sust
-AS SELECT p.id AS period_id,
+AS 
+SELECT p.id AS period_id,
     p.nombre,
     p.descripcion,
     p.codigo,
         CASE
             WHEN d.tot IS NULL THEN 0::bigint
             ELSE d.tot
-        END AS total_sustentantes
+        END AS total_sustentantes,
+        CASE
+            WHEN r.tot_r IS NULL THEN 0::bigint
+            ELSE r.tot_r
+        END AS total_reglas
    FROM periods p
      LEFT JOIN ( SELECT count(distributives.period_id) AS tot,
             distributives.period_id
            FROM distributives
-          GROUP BY distributives.period_id) d ON p.id = d.period_id;
+          GROUP BY distributives.period_id) d ON p.id = d.period_id
+     LEFT JOIN ( SELECT count(rules.period_id) AS tot_r,
+            rules.period_id
+           FROM rules
+          GROUP BY rules.period_id) R ON p.id = R.period_id;
 
 
 CREATE OR REPLACE VIEW public.fc_period_reglas

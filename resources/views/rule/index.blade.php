@@ -75,9 +75,20 @@
                                     <div class="btn-group">
 
                                         {{--@can('view',[$user, ['user.show','userown.show']])--}}
+                                        @can('haveaccess','rule.show') 
                                         <a href="{{ route('rule.show',[$per_reglas->period_id]) }}" class="btn btn-xs bg-brown" title="Ver"><b><i class="material-icons">folder_shared</i></b></a>
-                                        {{--@endcan--}}
+                                        @endcan
                                     </div>
+
+                                    @can('haveaccess','rule.destroy') 
+                                        {!! Form::open(array(
+                                            'style' => 'display: inline-block;',
+                                            'method' => 'DELETE',
+                                            'onsubmit' => "return confirm('Seguro desea Eliminar Reglas de asignación..!');",
+                                            'route' => ['rule.destroy', $per_reglas->period_id])) !!}
+                                            {!! Form::button('<i class="material-icons">delete</i>', ['class' => 'btn btn-xs btn-danger', 'type'=>'submit']) !!}
+                                        {!! Form::close() !!} 
+                                        @endcan 
 
                                   </td>
 				                </tr>

@@ -46,6 +46,7 @@
                                             <th>Descripción</th>
                                             <th>Código</th>
                                             <th>Total Sustentantes</th>
+                                            <th>Total Reglas</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>
@@ -56,6 +57,7 @@
                                             <th>Descripción</th>
                                             <th>Código</th>
                                             <th>Total Sustentantes</th>
+                                            <th>Total Reglas</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </tfoot>
@@ -70,6 +72,7 @@
 				                  <td>{{$dis_sust->descripcion}}</td>
                                   <td>{{$dis_sust->codigo}}</td>
                                   <td>{{$dis_sust->total_sustentantes}}</td>
+                                  <td>{{$dis_sust->total_reglas}}</td>
 				                  <td>
 
                                     <div class="btn-group">
@@ -77,6 +80,10 @@
                                         {{--@can('view',[$user, ['user.show','userown.show']])--}}
                                         <a href="{{ route('distributive.show',[$dis_sust->period_id]) }}" class="btn btn-xs bg-brown" title="Ver"><b><i class="material-icons">folder_shared</i></b></a>
                                         {{--@endcan--}}
+
+                                        @if ($dis_sust->total_sustentantes != 0 and $dis_sust->total_reglas != 0 and $dis_sust->asig == 'no')
+                                            <a href="{{ route('asigne.show',[$dis_sust->period_id]) }}" class="btn btn-xs bg-brown" title="Asignar"><b><i class="material-icons">folder_shared</i></b></a>
+                                        @endif
                                     </div>
 
                                   </td>

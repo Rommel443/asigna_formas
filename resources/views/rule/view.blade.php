@@ -12,12 +12,16 @@
                     <strong>DETALLE DE REGLAS DE ASIGNACIÓN</strong>
                 </h2>
                 <br>
-            <form action="{{route('rule.store')}}" method="POST" enctype="multipart/form-data">
-                @csrf  
-                <input type="file" name="import_file" />
-                <br>
-                <button class="btn btn-primary" type="submit">Importar</button>
-            </form>
+            @if (count($rule)>0)
+                <strong>Reglas de Asignación Cargadas</strong>
+            @else            
+                <form action="{{route('rule.store')}}" method="POST" enctype="multipart/form-data">
+                    @csrf  
+                    <input type="file" name="import_file" />
+                    <br>
+                    <button class="btn btn-primary" type="submit">Importar</button>
+                </form>
+            @endif
                 <ul class="header-dropdown m-r--5">
                     <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

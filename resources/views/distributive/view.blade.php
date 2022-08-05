@@ -12,33 +12,27 @@
                     <strong>DETALLE DE DISTRIBUTIVOS CON SUSTENTANTES</strong>
                 </h2>
                 <br>
+            @if (count($distributive)>0)
+                <strong>Sustentantes Cargados</strong>
+            @else  
             <form action="{{route('distributive.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf  
                 <input type="file" name="import_file" />
                 <br>
                 <button class="btn btn-primary" type="submit">Importar</button>
             </form>
-            <br>
-            @if (count($distributive)>0)
-                <tr>
-                    <a href="{{ route('asigne.show',[$distributive[0]->period_id]) }}" class="btn btn-xs bg-brown" title="Asignar"><b><i class="material-icons">folder_shared</i></b></a>
-                </tr>
-            @else
-                <tr>
-                    <td colspan="10" class="text-center">No se encontraron registros</td>
-                </tr>
             @endif
             <br>
-            @if (count($distributive)>0)
-                <tr>
+           
+            <br>
+
+            
+            @isset($distributive[0]->forma)
                 <br>
-                    <a href="{{ route('export.show',[$distributive[0]->period_id]) }}" class="btn btn-primary" title="exportar"><b><i class="material-icons">folder_shared</i></b></a>
-                </tr>
-            @else
-                <tr>
-                    <td colspan="10" class="text-center">No se encontraron registros</td>
-                </tr>
-            @endif
+                <a href="{{ route('export.show',[$distributive[0]->period_id]) }}" class="btn btn-primary" title="exportar"><b><i class="material-icons">folder_shared</i></b></a>
+            @endisset 
+
+            
             
                 <ul class="header-dropdown m-r--5">
                     <li class="dropdown">

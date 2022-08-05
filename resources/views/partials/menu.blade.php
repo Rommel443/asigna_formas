@@ -87,17 +87,8 @@
                             @endcan 
                         </ul>
                     </li>
-                    @endcan  
+                    @endcan 
 
-                                        
-                    
-
-                    <li>
-                        <a href="{{ route('distributive.index') }}">
-                            <i class="material-icons">stars</i>
-                            <span>Distributivos</span>
-                        </a>
-                    </li>
                     @can('haveaccess','rule.index')
                     <li>
                         <a href="{{ route('rule.index') }}">
@@ -106,5 +97,12 @@
                         </a>
                     </li>
                     @endcan  
+
+                    <li>
+                        <a href="{{ route('distributive.index') }}">
+                            <i class="material-icons">stars</i>
+                            <span>Distributivos</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
