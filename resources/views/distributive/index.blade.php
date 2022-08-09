@@ -26,13 +26,7 @@
             </div>
             <div class="body">
                         	<div id="DataTables_Table_1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-								<div class="dt-buttons">
-								<a class="dt-button buttons-copy buttons-html5" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>Copy</span></a>
-								<a class="dt-button buttons-csv buttons-html5" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>CSV</span></a>
-								<a class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>Excel</span></a>
-								<a class="dt-button buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>PDF</span></a>
-								<a class="dt-button buttons-print" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>Print</span></a>
-								</div>
+								
 								<div id="DataTables_Table_1_filter" class="dataTables_filter">
 								<label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="DataTables_Table_1"></label>
 								</div>
@@ -78,12 +72,15 @@
                                     <div class="btn-group">
 
                                         {{--@can('view',[$user, ['user.show','userown.show']])--}}
+                                        @can('haveaccess','distributive.show') 
                                         <a href="{{ route('distributive.show',[$dis_sust->period_id]) }}" class="btn btn-xs bg-brown" title="Ver"><b><i class="material-icons">folder_shared</i></b></a>
-                                        {{--@endcan--}}
+                                        @endcan
 
+                                        @can('haveaccess','asigne.show') 
                                         @if ($dis_sust->total_sustentantes != 0 and $dis_sust->total_reglas != 0 and $dis_sust->asig == 'no')
-                                            <a href="{{ route('asigne.show',[$dis_sust->period_id]) }}" class="btn btn-xs bg-brown" title="Asignar"><b><i class="material-icons">folder_shared</i></b></a>
+                                            <a href="{{ route('asigne.show',[$dis_sust->period_id]) }}" class="btn btn-xs bg-teal" title="Asignar"><b><i class="material-icons">create</i></b></a>
                                         @endif
+                                        @endcan
                                     </div>
 
                                   </td>

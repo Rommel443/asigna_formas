@@ -52,6 +52,7 @@ class AsigneController extends Controller
      */
     public function show($period_id)
     {
+        $this->authorize('haveaccess', 'asigne.show');
         //dd($period_id);
         $asigar = DB::select('select sp_asignar_formas('.$period_id.')');
         //$asigar = DB::select("select sp_asignar_formas($period_id)");

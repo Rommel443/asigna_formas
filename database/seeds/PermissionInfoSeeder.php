@@ -283,6 +283,14 @@ class PermissionInfoSeeder extends Seeder
 
         $permission_all[] = $permission->id;
 
+        $permission = Permission::create([
+            'name' => 'Asignar Formas',
+            'slug' => 'asigne.show',
+            'descripcion' => 'El usuario podrá asignar formas a distributivos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
 
     }
 }

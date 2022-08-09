@@ -28,9 +28,18 @@ class DistributivePolicy
      * @param  \App\Distributive  $distributive
      * @return mixed
      */
-    public function view(User $user, Distributive $distributive)
+    public function view(User $usera, Period $period, $perm=null)
     {
-        //
+        //dd($perm);
+        if ($usera->havePermission($perm[0])){
+            return true;
+        }else
+            if ($usera->havePermission($perm[1])){
+                return true;
+        }    
+        else{
+            return false;
+        } 
     }
 
     /**

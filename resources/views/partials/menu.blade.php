@@ -98,11 +98,13 @@
                     </li>
                     @endcan  
 
+                    @can('haveaccess','distributive.index')
                     <li>
                         <a href="{{ route('distributive.index') }}">
                             <i class="material-icons">stars</i>
                             <span>Distributivos</span>
                         </a>
                     </li>
+                    @endcan  
                 </ul>
             </div>

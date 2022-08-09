@@ -27,10 +27,10 @@
             <br>
 
             
-            @isset($distributive[0]->forma)
-                <br>
-                <a href="{{ route('export.show',[$distributive[0]->period_id]) }}" class="btn btn-primary" title="exportar"><b><i class="material-icons">folder_shared</i></b></a>
-            @endisset 
+            {{--@isset($distributive[0]->forma)--}}
+                
+                {{--<a href="{{ route('export.show',[$distributive[0]->period_id]) }}" class="btn btn-primary" title="exportar"><b><i class="material-icons">folder_shared</i></b></a>--}}
+                {{--@endisset --}}
 
             
             
@@ -48,7 +48,20 @@
                 </ul>
             </div>
             <div class="body">
-                            
+                @isset($distributive[0]->forma)
+                        <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+							<div class="dt-buttons">
+								{{--<a class="dt-button buttons-copy buttons-html5" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>Copy</span></a>--}}
+								{{--<a class="dt-button buttons-csv buttons-html5" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>CSV</span></a>--}}
+								<a href="{{ route('export.show',[$distributive[0]->period_id]) }}" class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>Excel</span></a>
+								{{--<a class="dt-button buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>PDF</span></a>--}}
+								{{--<a class="dt-button buttons-print" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>Print</span></a>--}}
+								</div>
+								<div id="DataTables_Table_1_filter" class="dataTables_filter">
+								<label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="DataTables_Table_1"></label>
+							</div>
+						</div>
+                @endisset             
             
             <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>

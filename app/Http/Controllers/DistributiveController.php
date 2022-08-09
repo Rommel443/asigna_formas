@@ -8,6 +8,7 @@ use App\Period;
 use Illuminate\Support\Facades\DB;
 use App\Imports\DistributivesImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Gate;
 
 class DistributiveController extends Controller
 {
@@ -18,7 +19,7 @@ class DistributiveController extends Controller
      */
     public function index()
     {
-        //Gate::authorize('haveaccess', 'role.index');
+        Gate::authorize('haveaccess', 'distributive.index');
         //$distributives = Distributive::orderBy('id','Desc')->paginate(5);
         //$sql = "select * from fc_dist_sust";
 
@@ -63,7 +64,7 @@ class DistributiveController extends Controller
      */
     public function show(Period $distributive)
     {
-
+        $this->authorize('haveaccess', 'distributive.show');
         $distributive = Distributive::where('period_id','=',$distributive->id)->paginate(20);
 
         //dd($distributive);

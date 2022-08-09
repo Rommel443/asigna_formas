@@ -26,11 +26,7 @@
             </div>
             <div class="body">
                         	<div id="DataTables_Table_1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-								<div class="dt-buttons">
 								
-								<a class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="DataTables_Table_1" href="#"><span>Excel</span></a>
-								
-								</div>
 								<div id="DataTables_Table_1_filter" class="dataTables_filter">
 								<label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="DataTables_Table_1"></label>
 								</div>
