@@ -12,6 +12,7 @@ class DistributivesExport implements FromCollection
     */
     public function collection()
     {
+        
         return Distributive::all();
     }
 }

@@ -7,8 +7,10 @@ use App\Distributive;
 use App\Period;
 use Illuminate\Support\Facades\DB;
 use App\Imports\DistributivesImport;
-use Maatwebsite\Excel\Facades\Excel;
+//use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Gate;
+//use Maatwebsite\Excel\Excel;
+use Excel;
 
 class DistributiveController extends Controller
 {
@@ -54,6 +56,23 @@ class DistributiveController extends Controller
         Excel::queueImport(new DistributivesImport, $file);
 
         return redirect()->route('distributive.index');
+
+        /*if($request->hasFile('import_file')){
+            $path = $request->file('import_file')->getRealPath();
+            $datos = Excel::load($path, function($reader){
+            })->get();
+
+            if(!empty($datos) && $datos->count()){
+                $datos = $datos->toArray();
+                for($i=0; $i>count($datos); $i++){
+                    $datosImportar[] = $datos[$i];
+                }
+            }
+
+            Distributive::insert($datosImportar);
+
+        }
+        return redirect()->route('distributive.index');*/
     }
 
     /**

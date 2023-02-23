@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\DistributivesExport;
+use App\Distributive;
+use Illuminate\Support\Facades\DB;
 
 class ExportController extends Controller
 {
@@ -49,7 +51,16 @@ class ExportController extends Controller
     {
         //dd($period_id);
         //$dis = Period::where('id','=',$period_id)->paginate(20);
+        //$distributives = DB::select('select * from distributives where period_id = 5');
+        //dd($dis_sus);
         return Excel::download(new DistributivesExport, 'dis.xlsx');
+
+        /*Excel::create('distributives', function($excel) use ($distributives){
+            $excel->sheet('Exportar', function($sheet) use ($distributives){
+                $sheet->fromArray($distributives);
+            });
+        })->export('xls');*/
+
     }
 
     /**
