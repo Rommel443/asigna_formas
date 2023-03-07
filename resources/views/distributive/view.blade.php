@@ -19,7 +19,10 @@
                 @csrf  
                 <input type="file" name="import_file" />
                 <br>
+                
                 <button class="btn btn-primary" type="submit">Importar</button>
+                
+                
             </form>
             @endif
             <br>

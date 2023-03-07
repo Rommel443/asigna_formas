@@ -77,7 +77,7 @@
                                 
                             </div>
                         </div>
-                        <div class="row m-t-15 m-b--20">
+                        <!-- <div class="row m-t-15 m-b--20">
                             
                             <div class="col-xs-6 align-right">
                             @if (Route::has('password.request'))
@@ -86,7 +86,7 @@
                                     </a>
                                 @endif
                             </div>
-                        </div>
+                        </div> -->
 
                         
                         

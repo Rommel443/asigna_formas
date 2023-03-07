@@ -42,7 +42,7 @@
                         @endif
                     >
                         <a class="menu-toggle">
-                            <i class="material-icons">check_circle</i>
+                            <i class="material-icons">person</i>
                             <span>Roles</span>
                         </a>
                         <ul class="ml-menu">
@@ -101,7 +101,7 @@
                     @can('haveaccess','distributive.index')
                     <li>
                         <a href="{{ route('distributive.index') }}">
-                            <i class="material-icons">stars</i>
+                            <i class="material-icons">group</i>
                             <span>Distributivos</span>
                         </a>
                     </li>

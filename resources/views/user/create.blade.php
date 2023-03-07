@@ -73,7 +73,7 @@
                                 <div class="col-sm-8">
                                         <div class="form-group">
                                             <div class="form-line">
-                                            <input type="text" class="form-control" 
+                                            <input type="password" class="form-control" 
                                             id="password" placeholder="password" 
                                             name="password" value="{{ old('password') }}">
                                         </div>

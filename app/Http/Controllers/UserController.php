@@ -35,6 +35,7 @@ class UserController extends Controller
     public function create()
     {
         Gate::authorize('haveaccess', 'user.create');
+        
         //$this->authorize('haveaccess', 'user.create');
         $users = User::get();
 
@@ -107,11 +108,18 @@ class UserController extends Controller
             'email'          => 'required|max:50|unique:users,email,'.$user->id,
         ]);
             //dd($request->all());
+            //dd($request['password']);
+            //dd($user);
+            //dd(Hash::make($request['password']));  
         $user->update($request->all());
-        
+        //$user->password = Hash::make($request['password']);
+        //DB::select('update users set password = '.$user->password.'');
         
             $user->roles()->sync($request->get('roles'));
-        
+
+            $usuario = User::findOrFail($user->id);
+            $usuario->password = Hash::make($request['password']);
+            $usuario->save();
         return redirect()->route('user.index')->with('status_success','Usuario actualizado con éxito');
     }
 

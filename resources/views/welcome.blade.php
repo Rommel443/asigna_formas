@@ -280,9 +280,10 @@
       <div class="col-md-4"> <span class="copyright"></span> </div>
       <div class="col-md-4">
         <ul class="list-inline social-buttons">
-          <li><a href="#"><i class="fa fa-twitter"></i></a> </li>
-          <li><a href="#"><i class="fa fa-facebook"></i></a> </li>
-          <li><a href="#"><i class="fa fa-linkedin"></i></a> </li>
+          <li><a href="https://twitter.com/Evaluacion_Ec"><i class="fa fa-twitter"></i></a> </li>
+          <li><a href="https://www.facebook.com/InevalEC/"><i class="fa fa-facebook"></i></a> </li>
+          <li><a href="https://www.youtube.com/user/INEVALEcuador"><i class="fa fa-youtube"></i></a> </li>
+          <li><a href="https://www.flickr.com/photos/inevalec/"><i class="fa fa-flickr"></i></a> </li>
         </ul>
       </div>
       <div class="col-md-4">

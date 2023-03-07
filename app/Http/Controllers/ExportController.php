@@ -51,16 +51,11 @@ class ExportController extends Controller
     {
         //dd($period_id);
         //$dis = Period::where('id','=',$period_id)->paginate(20);
-        //$distributives = DB::select('select * from distributives where period_id = 5');
-        //dd($dis_sus);
-        return Excel::download(new DistributivesExport, 'dis.xlsx');
-
-        /*Excel::create('distributives', function($excel) use ($distributives){
-            $excel->sheet('Exportar', function($sheet) use ($distributives){
-                $sheet->fromArray($distributives);
-            });
-        })->export('xls');*/
-
+        //$distributives = DB::select('select * from distributives where period_id ='. $period_id);
+        $distributives = Distributive::where('period_id', '=', $period_id)->get();
+        //dd($distributives);
+        //return Excel::download(new DistributivesExport($distributives), 'dis.xlsx');
+        return (new DistributivesExport($distributives))->download('dis.xlsx', \Maatwebsite\Excel\Excel::XLSX);
     }
 
     /**

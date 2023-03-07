@@ -62,7 +62,25 @@
                                 </div>
                             </div>
 
-                            
+                            <div class="row clearfix">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="col-md-8 control-label" for="name">Contraseña</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                            <input type="password" class="form-control" 
+                                            id="password" placeholder="password" 
+                                            name="password" value="{{ old('password', $user->password) }}">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             
 
