@@ -36,7 +36,7 @@
                                         <div class="form-group">
                                             <div class="form-line">
                                             <input type="text" class="form-control" 
-                                            id="name" placeholder="Nombre del usuario" 
+                                            id="name" placeholder="Nombre del usuario" required
                                             name="name" value="{{ old('name') }}">
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@
                                         <div class="form-group">
                                             <div class="form-line">
                                             <input type="text" class="form-control" 
-                                            id="email" placeholder="email" 
+                                            id="email" placeholder="email" required
                                             name="email" value="{{ old('email') }}">
                                         </div>
                                     </div>
@@ -74,7 +74,7 @@
                                         <div class="form-group">
                                             <div class="form-line">
                                             <input type="password" class="form-control" 
-                                            id="password" placeholder="password" 
+                                            id="password" placeholder="password" required 
                                             name="password" value="{{ old('password') }}">
                                         </div>
                                     </div>

@@ -36,7 +36,7 @@
                                     <div class="form-group">
                                         <div class="form-line">
                                             <input type="text" class="form-control" 
-                                            id="name" placeholder="Nombre del rol" 
+                                            id="name" placeholder="Nombre del rol" required
                                             name="name" value="{{ old('name')}}">
                                         </div>
                                     </div>
@@ -96,12 +96,12 @@
                                     <input  type="radio" id="fullaccessyes" 
                                             name="full-access" 
                                             class="custom-control-input" 
-                                            value="yes"
+                                            value="yes" required
                                             
                                             >
                                             <label class="custom-control-label" for="fullaccessyes">Yes</label>
 
-                                            <input  type="radio" id="fullaccessno" 
+                                            <input  type="radio" id="fullaccessno" required
                                             name="full-access" 
                                             class="custom-control-input" 
                                             value="no" 

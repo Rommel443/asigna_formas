@@ -17,7 +17,7 @@
             @else  
             <form action="{{route('distributive.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf  
-                <input type="file" name="import_file" />
+                <input type="file" name="import_file" required/>
                 <br>
                 
                 <button class="btn btn-primary" type="submit">Importar</button>
